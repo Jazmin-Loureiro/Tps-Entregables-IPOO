@@ -1,5 +1,5 @@
 <?php
-include 'viaje.php.php';
+include 'viaje.php';
 
 /**
  *  Corrobora que un número se encuentre entre un mínimo y un máximo.
