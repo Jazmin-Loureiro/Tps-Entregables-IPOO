@@ -17,6 +17,10 @@ function solicitarNumeroEntre($minSNE, $maxSNE) {
     }
 
 
+/**
+ * Muestra el menu del viaje y solicita una opcion valida a realizar.
+ * @return int
+ */
 function seleccionarOpcion () {
     /* int $opcionM */
     echo "**************** Menú: ****************\n 
@@ -27,13 +31,18 @@ function seleccionarOpcion () {
     4.Cambiar cantidad maxima de pasajeros.\n
     5.Ingresar un nuevo pasajero.\n
     6.Cambiar datos de los pasajeros.\n
-    7.Terminar.\n
+    7.Mostrar la informacion del viaje.\n
+    8.Terminar.\n
      Seleccione una opcion: \n";
-    $opcionM = solicitarNumeroEntre (1, 7);
+    $opcionM = solicitarNumeroEntre (1, 8);
     return $opcionM;
 }
 
 
+/**
+ * Muestra el menu de opciones para modificar a un pasajero y solicita una opcion valida a realizar.
+ * @return int
+ */
 function seleccionarOpcionPasajero () {
     /* int $opcionP */
     echo "**************** Opciones Pasajero: ****************\n 
@@ -44,12 +53,14 @@ function seleccionarOpcionPasajero () {
     4.Cambiar su DNI.\n
     5.Terminar.\n
     Seleccione una opcion: \n";
-    $opcionP = solicitarNumeroEntre (1, 6);
+    $opcionP = solicitarNumeroEntre (1, 5);
     return $opcionP;
 }
 
-//Variable que habilita usar las opciones 2, 3, 4, 5 una vez creado el viaje.
+
+//Variable que habilita usar las opciones 2, 3, 4, 5, 6 y 7 una vez creado el viaje.
 $creacionV = 0;
+
 
 //Menu de opciones
 do {
@@ -131,7 +142,7 @@ do {
                     echo "Ingrese el DNI del pasajero " . $cantPasajeros + 1 . ": \n";
                     $nuevoPasajero ["dni"] = trim(fgets(STDIN));
                     array_push($pasajerosV, $nuevoPasajero);
-                    print_r($pasajerosV);
+                    $viaje -> setPasajeros($pasajerosV);
                 }
                 else {
                     echo "No es posible agregar mas pasajeros al viaje ya que se llego al limite de pasajeros permitido.\n";
@@ -182,8 +193,15 @@ do {
             }
             break;
         case 7:
+            if ($creacionV == 0) {
+                echo "No existe un viaje. Primero cree uno para asi poder cambiar su codigo.\n";
+            }
+            else {
+                $viaje -> to__String();
+                }
+            break;
+        case 8:
             echo "Edicion finalizada";
-            echo $viaje -> __toString();
             break;
     }
-} while ($opcionM <> 7);
+} while ($opcionM <> 8);
