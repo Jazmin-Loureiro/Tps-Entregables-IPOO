@@ -23,7 +23,7 @@ function solicitarNumeroEntre($minSNE, $maxSNE) {
  */
 function seleccionarOpcion () {
     /* int $opcionM */
-    echo "**************** Menú: ****************\n 
+    echo "\n**************** Menú: ****************\n 
     ¿Qué desea hacer?\n
     1.Crear viaje.\n 
     2.Cambiar codigo del viaje.\n 
@@ -45,7 +45,7 @@ function seleccionarOpcion () {
  */
 function seleccionarOpcionPasajero () {
     /* int $opcionP */
-    echo "**************** Opciones Pasajero: ****************\n 
+    echo "\n**************** Opciones Pasajero: ****************\n 
     ¿Qué desea hacer?\n
     1.Cambiar toda su informacion.\n 
     2.Cambiar su nombre.\n 
@@ -194,10 +194,10 @@ do {
             break;
         case 7:
             if ($creacionV == 0) {
-                echo "No existe un viaje. Primero cree uno para asi poder cambiar su codigo.\n";
+                echo "No existe un viaje. Primero cree uno para asi poder mostrar sus datos.\n";
             }
             else {
-                $viaje -> to__String();
+                echo $viaje -> __toString();
                 }
             break;
         case 8:
