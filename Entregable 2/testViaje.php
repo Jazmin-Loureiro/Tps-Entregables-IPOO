@@ -80,15 +80,30 @@ do {
             $pasajerosV = []; 
             $i = 0;
             do {
+                echo "Ingrese el DNI del pasajero " . $i + 1 . ": \n";
+                $dniNuevoP = trim(fgets(STDIN));
+                $n = count($pasajerosV);
+                $i = 0;
+                $dniP = 0;
+                while ($i < $n) {
+                    $pasajero = $pasajerosV [$i];
+                    $dniP = $pasajero -> getDni();
+                    if ($dniNuevoP == $dniP) {
+                        echo "Ya existe un pasajero cargado con ese DNI.\n";
+                        echo "Ingrese un nuevo DNI: ";
+                        $dniNuevoP = trim(fgets(STDIN));
+                        $i = -1;
+                    } 
+                    $i = $i + 1;
+                } 
+                echo"Perfecto, no existe un pasajero con ese DNI cargado, puede proceder a cargarlo a continuacion si hay espacio disponible a continuacion.\n";
                 echo "Ingrese el nombre del pasajero " . $i + 1 . ": \n";
                 $nombreP = trim(fgets(STDIN));
                 echo "Ingrese el apellido del pasajero " . $i + 1 . ": \n";
                 $apellidoP = trim(fgets(STDIN));
-                echo "Ingrese el DNI del pasajero " . $i + 1 . ": \n";
-                $dniP = trim(fgets(STDIN));
                 echo "Ingrese el telefono del pasajero " . $i + 1 . ": \n";
                 $telefonoP = trim(fgets(STDIN));
-                $pasajerosV [$i] = new Pasajero($nombreP, $apellidoP, $dniP, $telefonoP);
+                $pasajerosV [$i] = new Pasajero($nombreP, $apellidoP, $dniNuevoP, $telefonoP);
                 echo "Desea ingresar otro pasajero?: ";
                 $rto = trim(fgets(STDIN));
                 $i = $i + 1;
@@ -134,7 +149,6 @@ do {
         case 4:
             if ($creacionV == 0) {
                 echo "No existe un viaje. Primero cree uno para asi poder cambiar la cantidad maxima de pasajeros.\n";
-                
             }
             else {
                 echo "Ingrese la nueva capacidad maxima de pasajeros: ";
@@ -172,11 +186,9 @@ do {
                     $nombreN = trim(fgets(STDIN));
                     echo "Ingrese el apellido del pasajero " . $cantPasajeros + 1 . ": \n";
                     $apellidoN = trim(fgets(STDIN));
-                    echo "Ingrese el DNI del pasajero " . $cantPasajeros + 1 . ": \n";
-                    $dniN = trim(fgets(STDIN));
                     echo "Ingrese el telefono del pasajero " . $cantPasajeros + 1 . ": \n";
                     $telefonoN = trim(fgets(STDIN));
-                    $nuevoPasajero = new Pasajero($nombreN, $apellidoN, $dniN, $telefonoN);
+                    $nuevoPasajero = new Pasajero($nombreN, $apellidoN, $dniNuevoP, $telefonoN);
                     array_push($pasajerosV, $nuevoPasajero);
                     $viaje -> setColeccionPasajeros($pasajerosV);
                 }

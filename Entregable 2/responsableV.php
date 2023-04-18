@@ -90,6 +90,6 @@ class ResponsableV {
      * @return string
      */
     public function __toString() {
-        return "\nNumero de empleado: " . $this -> getNumEmpleado() . "\nNumero de licencia: " . $this -> getNumLicencia() . "\nNombre: " . $this -> getNombre() . "\nApellido: " . $this -> getApellido();
+        return "\nNumero de empleado: " . $this -> getNumEmpleado() . "\nNumero de licencia: " . $this -> getNumLicencia() . "\nNombre: " . $this -> getNombre() . "\nApellido: " . $this -> getApellido() . "\n";
     }
 }

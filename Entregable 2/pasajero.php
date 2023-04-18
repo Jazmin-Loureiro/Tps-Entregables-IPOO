@@ -90,7 +90,7 @@ class Pasajero {
      * @return string
      */
     public function __toString() {
-        return "\nNombre del pasajero: " . $this -> getNombre() . "\nApellido del pasajero: " . $this -> getApellido() . "\nDNI del pasajero: " . $this -> getDni() . "\nTelefono del pasajero: " . $this -> getTelefono();
+        return "\nNombre del pasajero: " . $this -> getNombre() . "\nApellido del pasajero: " . $this -> getApellido() . "\nDNI del pasajero: " . $this -> getDni() . "\nTelefono del pasajero: " . $this -> getTelefono() . "\n";
     }
     
 }
