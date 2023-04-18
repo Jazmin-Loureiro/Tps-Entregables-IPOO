@@ -62,7 +62,7 @@ function seleccionarOpcionPasajero () {
 }
 
 
-//Variable que habilita usar las opciones 2, 3, 4, 5, 6 y 7 una vez creado el viaje.
+//Variable que habilita usar las opciones 2, 3, 4, 5, 6 , 7 y 8 una vez creado el viaje.
 $creacionV = 0;
 
 
@@ -179,7 +179,6 @@ do {
                     $nuevoPasajero = new Pasajero($nombreN, $apellidoN, $dniN, $telefonoN);
                     array_push($pasajerosV, $nuevoPasajero);
                     $viaje -> setColeccionPasajeros($pasajerosV);
-
                 }
                 else {
                     echo "No es posible agregar mas pasajeros al viaje ya que se llego al limite de pasajeros permitido.\n";
@@ -212,7 +211,6 @@ do {
                             echo "Ingrese el nuevo telefono: ";
                             $telefonoM = trim(fgets(STDIN));
                             $pasajeroAModi -> setTelefono($telefonoM);
-                            //duda de si tengo que mandar el objeto modificado o ya se guardo con los sets
                             break;
                         case 2:
                             echo "Ingrese el nuevo nombre: ";
