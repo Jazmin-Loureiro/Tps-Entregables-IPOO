@@ -106,10 +106,10 @@ class PasajeroEspecial extends Pasajero {
      */
     public function serviciosEspe() {
         if ($this -> getServiciosEspeciales() == true) {
-            $respuesta = "Disponnible";
+            $respuesta = "Si";
         }
         else {
-            $respuesta = "No disponible";
+            $respuesta = "No";
         }
         return $respuesta;
     }
@@ -120,10 +120,10 @@ class PasajeroEspecial extends Pasajero {
     */
     public function asistenciaExtra() {
         if ($this -> getAsistencia() == true) {
-            $respuesta = "Disponnible";
+            $respuesta = "Si";
         }
         else {
-            $respuesta = "No disponible";
+            $respuesta = "No";
         }
         return $respuesta;
     }
@@ -134,10 +134,10 @@ class PasajeroEspecial extends Pasajero {
      */
     public function alimentosEspe() {
         if ($this -> getAlimentos() == true) {
-            $respuesta = "Disponnible";
+            $respuesta = "Si";
         }
         else {
-            $respuesta = "No disponible";
+            $respuesta = "No";
         }
         return $respuesta;
     }
