@@ -834,87 +834,88 @@ do {
                             echo "\nSeleccione el pasajero que desea modificar: \n" . $stringPasajerosMostrar;
                             $numeroP = solicitarNumeroEntre(1, $countPasajeros);
                             $pasajeroAModificar = $arregloObjP [$numeroP - 1];
+                        
+                            //Menu de modificaciones
+                            do {
+                                $opcionMPasajero = seleccionarOpcionModificacionesP();
+                                switch ($opcionMPasajero) {
+                                    case 1: 
+                                        echo "\nIngrese el nuevo nombre del pasajero: \n";
+                                            $nuevoNombre = trim(fgets(STDIN));
+                                            $pasajeroAModificar -> setPnombre($nuevoNombre);
+                                            $respuesta = $pasajeroAModificar -> modificar();
+                                            if ($respuesta == true) {
+                                                echo "\nEl nombre ha sido cambiado correctamente.\n";
+                                            }
+                                            else {
+                                                echo "\nNo se a podido realizar el cambio.\n";
+                                            }
+                                        break;
+                                    case 2:
+                                        echo "\nIngrese el nuevo apellido del pasajero: \n";
+                                            $nuevoApellido = trim(fgets(STDIN));
+                                            $pasajeroAModificar -> setPapellido($nuevoApellido);
+                                            $respuesta = $pasajeroAModificar -> modificar();
+                                            if ($respuesta == true) {
+                                                echo "\nEl apellido ha sido cambiado correctamente.\n";
+                                            }
+                                            else {
+                                                echo "\nNo se a podido realizar el cambio.\n";
+                                            }
+                                        break;
+                                    case 3:
+                                        echo "\nIngrese el nuevo telefono del pasajero: \n";
+                                            $nuevoTelefono = trim(fgets(STDIN));
+                                            $pasajeroAModificar -> setPtelefono($nuevoTelefono);
+                                            $respuesta = $pasajeroAModificar -> modificar();
+                                            if ($respuesta == true) {
+                                                echo "\nEl telefono ha sido cambiado correctamente.\n";
+                                            }
+                                            else {
+                                                echo "\nNo se a podido realizar el cambio.\n";
+                                            }
+                                        break;
+                                    case 4:
+                                        $arregloObjV = $objViaje -> listar();
+                                        $countViajes = count($arregloObjV);
+                                        $nP = 0;
+                                        $stringViajesDisponibles = "";
+                                        $arrayViajesDis = [];
+                                        for ($i = 0; $i < $countViajes; $i++) {
+                                            $viajeForM = $arregloObjV [$i];
+                                            $cantPasajeros = $viajeForM -> getColPasajeros();
+                                            $cantPasajerosN = count($cantPasajeros);
+                                            $cantMaxFor = $viajeForM -> getVcantmaxpasajeros();
+                                            if ($cantPasajerosN < $cantMaxFor) {
+                                                $nP = $nP + 1;
+                                                array_push($arrayViajesDis, $viajeForM);
+                                                $stringViajesDisponibles = $stringViajesDisponibles . $nP .  "." . $viajeForM . "\n";
+                                            }
+                                        }
+                                        if ($nP == 0) {
+                                            echo "\nNo existen viajes con espacio disponible para poder realizar el cambio de id";
+                                        }
+                                        else {
+                                            echo "\nSeleccione el nuevo viaje, por ende el nuevo id: \n" . $stringViajesDisponibles;
+                                            $numSeleccionId = solicitarNumeroEntre(1, $nP);
+                                            $viajeAModificarP = $arrayViajesDis [$numSeleccionId - 1];
+                                            $nuevoIdV = $viajeAModificarP -> getIdviaje();
+                                            $pasajeroAModificar -> setIdviaje($nuevoIdV);
+                                            $respuesta = $pasajeroAModificar -> modificar();
+                                            if ($respuesta == true) {
+                                                echo "\nEl viaje, por ende su Id, ha sido cambiado correctamente.\n";
+                                            }
+                                            else {
+                                                echo "\nNo se a podido realizar el cambio.\n";
+                                            }
+                                        }
+                                        break;
+                                    case 5: 
+                                        echo "\nModificaciones terminadas.\n";
+                                        break;
+                                }
+                            } while ($opcionMPasajero <> 5);
                         }
-                        //Menu de modificaciones
-                        do {
-                            $opcionMPasajero = seleccionarOpcionModificacionesP();
-                            switch ($opcionMPasajero) {
-                                case 1: 
-                                    echo "\nIngrese el nuevo nombre del pasajero: \n";
-                                        $nuevoNombre = trim(fgets(STDIN));
-                                        $pasajeroAModificar -> setPnombre($nuevoNombre);
-                                        $respuesta = $pasajeroAModificar -> modificar();
-                                        if ($respuesta == true) {
-                                            echo "\nEl nombre ha sido cambiado correctamente.\n";
-                                        }
-                                        else {
-                                            echo "\nNo se a podido realizar el cambio.\n";
-                                        }
-                                    break;
-                                case 2:
-                                    echo "\nIngrese el nuevo apellido del pasajero: \n";
-                                        $nuevoApellido = trim(fgets(STDIN));
-                                        $pasajeroAModificar -> setPapellido($nuevoApellido);
-                                        $respuesta = $pasajeroAModificar -> modificar();
-                                        if ($respuesta == true) {
-                                            echo "\nEl apellido ha sido cambiado correctamente.\n";
-                                        }
-                                        else {
-                                            echo "\nNo se a podido realizar el cambio.\n";
-                                        }
-                                    break;
-                                case 3:
-                                    echo "\nIngrese el nuevo telefono del pasajero: \n";
-                                        $nuevoTelefono = trim(fgets(STDIN));
-                                        $pasajeroAModificar -> setPtelefono($nuevoTelefono);
-                                        $respuesta = $pasajeroAModificar -> modificar();
-                                        if ($respuesta == true) {
-                                            echo "\nEl telefono ha sido cambiado correctamente.\n";
-                                        }
-                                        else {
-                                            echo "\nNo se a podido realizar el cambio.\n";
-                                        }
-                                    break;
-                                case 4:
-                                    $arregloObjV = $objViaje -> listar();
-                                    $countViajes = count($arregloObjV);
-                                    $nP = 0;
-                                    $stringViajesDisponibles = "";
-                                    $arrayViajesDis = [];
-                                    for ($i = 0; $i < $countViajes; $i++) {
-                                        $viajeForM = $arregloObjV [$i];
-                                        $cantPasajeros = $viajeForM -> getColPasajeros();
-                                        $cantPasajerosN = count($cantPasajeros);
-                                        $cantMaxFor = $viajeForM -> getVcantmaxpasajeros();
-                                        if ($cantPasajerosN < $cantMaxFor) {
-                                            $nP = $nP + 1;
-                                            array_push($arrayViajesDis, $viajeForM);
-                                            $stringViajesDisponibles = $stringViajesDisponibles . $nP .  "." . $viajeForM . "\n";
-                                        }
-                                    }
-                                    if ($nP == 0) {
-                                        echo "\nNo existen viajes con espacio disponible para poder realizar el cambio de id";
-                                    }
-                                    else {
-                                        echo "\nSeleccione el nuevo viaje, por ende el nuevo id: \n" . $stringViajesDisponibles;
-                                        $numSeleccionId = solicitarNumeroEntre(1, $nP);
-                                        $viajeAModificarP = $arrayViajesDis [$numSeleccionId - 1];
-                                        $nuevoIdV = $viajeAModificarP -> getIdviaje();
-                                        $pasajeroAModificar -> setIdviaje($nuevoIdV);
-                                        $respuesta = $pasajeroAModificar -> modificar();
-                                        if ($respuesta == true) {
-                                            echo "\nEl viaje, por ende su Id, ha sido cambiado correctamente.\n";
-                                        }
-                                        else {
-                                            echo "\nNo se a podido realizar el cambio.\n";
-                                        }
-                                    }
-                                    break;
-                                case 5: 
-                                    echo "\nModificaciones terminadas.\n";
-                                    break;
-                            }
-                        } while ($opcionMPasajero <> 5);
                         break;
                     case 3:
                         //Eliminar
